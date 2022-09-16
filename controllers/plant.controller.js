@@ -13,11 +13,13 @@ exports.create = (req, res) => {
   // Create a plant
   const plant = {
     scientificName: req.body.scientificName,
+    family: req.body.family,
     popularNames: req.body.popularNames,
     toxicCats: req.body.toxicCats,
     toxicDogs: req.body.toxicDogs,
     isFlower: req.body.isFlower,
     description: req.body.description,
+    signs: req.body.signs,
     // add as assets or web addresses?
     images: req.body.images,
     link: req.body.link,
@@ -65,7 +67,7 @@ exports.findOne = (req, res) => {
       });
     });
 };
-// Delete a Tutorial with the specified id in the request
+// Delete a Plant with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
   Plant.destroy({
@@ -88,7 +90,7 @@ exports.delete = (req, res) => {
       });
     });
 };
-// Delete all Tutorials from the database.
+// Delete all Plants from the database.
 exports.deleteAll = (req, res) => {
   Plant.destroy({
     where: {},
@@ -104,7 +106,7 @@ exports.deleteAll = (req, res) => {
       });
     });
 };
-// Find all published Tutorials
+
 exports.findAllToxicToCats = (req, res) => {
   Plant.findAll({ where: { toxicCats: true } })
     .then(data => {

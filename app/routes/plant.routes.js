@@ -4,6 +4,7 @@ module.exports = app => {
 
   router.get('/', plants.findAll);
   router.post('/', plants.create)
+  router.delete('/', plants.deleteAll);
   router.get('/:id', plants.findOne);
   router.delete('/:id', plants.delete);
   router.get('/toxic/cats', plants.findAllToxicToCats);
