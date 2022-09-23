@@ -1,3 +1,5 @@
+// knowledge from here: https://www.bezkoder.com/node-express-sequelize-postgresql/#Update_an_object
+
 const db = require('../models');
 const Plant = db.plant;
 // Op is operators being imported as symbols
@@ -37,6 +39,27 @@ exports.create = (req, res) => {
       });
     });
 };
+exports.update = (req, res) => {
+  const { id } = req.body;
+  console.log('check', id, req.params, req.body);
+  Plant.update(req.body, {
+    where: { id: id}
+  }).then(num => {
+    if (num == 1) {
+        res.send({
+          message: "Plant was updated successfully."
+        });
+      } else {
+        res.send({
+          message: `Cannot update plant with id=${id}. Maybe plant was not found or req.body is empty!`
+        });
+      }
+  }).catch(err => {
+      res.status(500).send({
+        message: "Error updating plant with id=" + id
+      });
+    })
+}
 exports.findAll = (req, res) => {
   Plant.findAll()
     .then(data => {
