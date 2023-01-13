@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const db = require('./models')
+const browserInstance = require('./browser');
 
 // finish putting all plants in database; copy & paste data from postman to keep as seed data?
 // adding a patch request to update any errors?
@@ -20,6 +21,7 @@ db.sequelize.sync()
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+browserInstance.startBrowser()
 
 require('./app/routes/plant.routes')(app);
 const PORT = process.env.PORT || 3000
