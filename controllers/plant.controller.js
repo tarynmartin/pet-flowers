@@ -14,6 +14,7 @@ exports.create = (req, res) => {
   }
   // Create a plant
   const plant = {
+    name: req.body.name,
     scientificName: req.body.scientificName,
     family: req.body.family,
     popularNames: req.body.popularNames,
